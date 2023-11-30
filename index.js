@@ -61,7 +61,9 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     // Espere segundos antes de continuar a execução
     await new Promise((resolve) => setTimeout(resolve, 5000));
     
-    const serie = await page.waitForSelector('#lproom_reccf9a77bbad38831-l');
+    await page.screenshot({ path: 'screenshot.png' });
+
+    /*const serie = await page.waitForSelector('#lproom_reccf9a77bbad38831-l');
     if (serie) {
       await page.click('#lproom_reccf9a77bbad38831-l');
     } else {
@@ -83,7 +85,7 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     // Clica na sala de aula virtual
     await page.waitForSelector('#rpchntx');
     await page.type('#rpchntx', mensagem);
-    await page.keyboard.press('Enter');
+    await page.keyboard.press('Enter');*/
 
     await new Promise((resolve) => setTimeout(resolve, 5000));
     
