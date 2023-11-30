@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     const browser = await puppeteer.launch({
-        headless: false, // Torna o navegador visível
+        headless: true, // Torna o navegador visível
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
