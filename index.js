@@ -19,9 +19,13 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
 
     await page.goto('https://cmspweb.ip.tv/'); // URL do site
   
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+
     const ra = usuario.slice(0,12);
     const digito = usuario.slice(-1);
     
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     await page.waitForSelector('#access-student');
     await page.click('#access-student');
 
@@ -34,6 +38,8 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     await page.waitForSelector('#password-student');
     await page.type('#password-student', senha);
     
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // Clique no botão de login (substitua o seletor apropriado)
     await page.waitForSelector('#btn-login-student');
     await page.click('#btn-login-student');
@@ -55,6 +61,9 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     // Clica na sala de aula virtual
     await page.waitForSelector('#rpchntx');
     await page.type('#rpchntx', mensagem);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     await page.keyboard.press('Enter');
     
     await browser.close();
