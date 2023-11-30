@@ -27,14 +27,22 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     await page.waitForSelector('#access-student');
     await page.click('#access-student');
 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     await page.waitForSelector('#ra-student');
     await page.type('#ra-student', ra);
 
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     await page.waitForSelector('#digit-student');
     await page.type('#digit-student', digito);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     
     await page.waitForSelector('#password-student');
     await page.type('#password-student', senha);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Clique no botão de login (substitua o seletor apropriado)
     await page.waitForSelector('#btn-login-student');
@@ -60,6 +68,8 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     await page.waitForSelector('#rpchntx');
     await page.type('#rpchntx', mensagem);
     await page.keyboard.press('Enter');
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     
     await browser.close();
 
