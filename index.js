@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     const browser = await puppeteer.launch({
         headless: true, // Torna o navegador visível
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
+
     const page = await browser.newPage();
   
     await page.setRequestInterception(true);
@@ -80,15 +80,14 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
 
 // ===== { ROTAS } ===== //
 
-app.get('/login', (req, res) => {
+app.get('/presenca', (req, res) => {
   const usuario = req.query.usuario;
-  const senhaAlterada = req.query.senha;
-  const mensagem = req.query.mensagem;
-  const senha = decodeURIComponent(senhaAlterada);
-
+  const senha = decodeURIComponent(req.query.senha);
+  const mensagem = decodeURIComponent(req.query.mensagem);
+  
   // Verifica se o usuário e a senha foram fornecidos na URL
-  if (!usuario || !senha) {
-    return res.status(400).json({ error: 'Usuário e senha são obrigatórios.' });
+  if (!usuario || !senha || !mensagem) {
+    return res.status(400).json({ error: 'Usuário, Senha e Mensagem são obrigatórios.' });
   }
 
   // Chama a função para preencher o formulário e fazer login com os parâmetros recebidos
