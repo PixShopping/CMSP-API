@@ -19,8 +19,6 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
 
     await page.goto('https://cmspweb.ip.tv/'); // URL do site
   
-    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
-
     const ra = usuario.slice(0,12);
     const digito = usuario.slice(-1);
     
@@ -37,15 +35,15 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     
     await page.waitForSelector('#password-student');
     await page.type('#password-student', senha);
-    
-    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Clique no botão de login (substitua o seletor apropriado)
     await page.waitForSelector('#btn-login-student');
     await page.click('#btn-login-student');
     
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+
     // Espere segundos antes de continuar a execução
-    await new Promise((resolve) => setTimeout(resolve, 20000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     
     await page.waitForSelector('#lproom_reccf9a77bbad38831-l');
     await page.click('#lproom_reccf9a77bbad38831-l');
@@ -61,9 +59,6 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     // Clica na sala de aula virtual
     await page.waitForSelector('#rpchntx');
     await page.type('#rpchntx', mensagem);
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     await page.keyboard.press('Enter');
     
     await browser.close();
@@ -92,7 +87,7 @@ app.get('/presenca', (req, res) => {
       return res.json(data);
     })
     .catch((error) => {
-      console.error('Erro ao preencher o formulário e fazer login:', error);
+    console.error('Erro ao preencher o formulário e fazer login:', error);
       return res.status(500).json({ error: 'Erro interno do servidor' });
     });
 });
