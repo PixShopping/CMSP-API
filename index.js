@@ -24,9 +24,13 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
-    await page.waitForSelector('#access-student');
-    await page.click('#access-student');
-
+    const acesso = await page.waitForSelector('#access-student');
+    if (acesso) {
+      await page.click('#access-student');
+    } else {
+      console.log('botao acesso não encontrado')
+    }
+    
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     await page.waitForSelector('#ra-student');
@@ -45,22 +49,34 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     // Clique no botão de login (substitua o seletor apropriado)
-    await page.waitForSelector('#btn-login-student');
-    await page.click('#btn-login-student');
-    
+    const logar = await page.waitForSelector('#btn-login-student');
+    if (logar) {
+      await page.click('#btn-login-student');
+    } else {
+      console.log('botao logar não encontrado')
+    }
+
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
     // Espere segundos antes de continuar a execução
     await new Promise((resolve) => setTimeout(resolve, 5000));
     
-    await page.waitForSelector('#lproom_reccf9a77bbad38831-l');
-    await page.click('#lproom_reccf9a77bbad38831-l');
+    const serie = await page.waitForSelector('#lproom_reccf9a77bbad38831-l');
+    if (serie) {
+      await page.click('#lproom_reccf9a77bbad38831-l');
+    } else {
+      console.log('botao serie não encontrado')
+    }
 
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
-    await page.waitForSelector('#roomDetailConference');
-    await page.click('#roomDetailConference');
-    
+    const sala = await page.waitForSelector('#roomDetailConference');
+    if (sala) {
+      await page.click('#roomDetailConference');
+    } else {
+      console.log('botao sala não encontrado')
+    }
+
     await new Promise((resolve) => setTimeout(resolve, 15000));
 
     // Vitor Custódio da Silva, N° 36 está presente
