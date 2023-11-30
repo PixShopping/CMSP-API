@@ -22,27 +22,27 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     const ra = usuario.slice(0,12);
     const digito = usuario.slice(-1);
     
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     await page.waitForSelector('#access-student');
     await page.click('#access-student');
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     await page.waitForSelector('#ra-student');
     await page.type('#ra-student', ra);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     await page.waitForSelector('#digit-student');
     await page.type('#digit-student', digito);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     
     await page.waitForSelector('#password-student');
     await page.type('#password-student', senha);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     // Clique no botão de login (substitua o seletor apropriado)
     await page.waitForSelector('#btn-login-student');
@@ -51,17 +51,17 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
     // Espere segundos antes de continuar a execução
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     
     await page.waitForSelector('#lproom_reccf9a77bbad38831-l');
     await page.click('#lproom_reccf9a77bbad38831-l');
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     await page.waitForSelector('#roomDetailConference');
     await page.click('#roomDetailConference');
     
-    await new Promise((resolve) => setTimeout(resolve, 12000));
+    await new Promise((resolve) => setTimeout(resolve, 15000));
 
     // Vitor Custódio da Silva, N° 36 está presente
     // Clica na sala de aula virtual
@@ -69,7 +69,7 @@ async function autoFillAndSubmitForm(usuario, senha, mensagem) {
     await page.type('#rpchntx', mensagem);
     await page.keyboard.press('Enter');
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     
     await browser.close();
 
